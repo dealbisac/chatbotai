@@ -23,7 +23,8 @@ const Page = async ({ params } : PageProps) => {
 
   await ragChat.context.add({
     type: "html",
-    source: refinedUrl
+    source: refinedUrl,
+    config: { chunkOverlap:50, chunkSize:200 },
   })
   return (
     <div>Hello</div>
