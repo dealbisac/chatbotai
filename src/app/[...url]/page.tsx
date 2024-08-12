@@ -16,14 +16,14 @@ function refineUrl({ url }: { url: string[] }) {
     return decodedComponent.join("/")
 }
 
-const Page = ({ params } : PageProps) => {
+const Page = async ({ params } : PageProps) => {
   const refinedUrl = refineUrl({ url: params.url as string[] })
 
   console.log(params)
 
   await ragChat.context.add({
     type: "html",
-    source: 
+    source: refinedUrl
   })
   return (
     <div>Hello</div>
