@@ -18,10 +18,14 @@ function refineUrl({ url }: { url: string[] }) {
 }
 
 const Page = async ({ params } : PageProps) => {
+   // Refine the URL
   const refinedUrl = refineUrl({ url: params.url as string[] })
 
   // Check if the provided URL is already indexed so that new vector db can be duplicated
   const isAlreadyIndexed = await redis.sismember("indexed-urls", refinedUrl);
+
+  // Session ID
+    const sessionId = "session-mock";
   
   if (!isAlreadyIndexed) {
 
