@@ -1,3 +1,4 @@
+import ChatWrapper from "@/components/ChatWrapper";
 import { ragChat } from "@/lib/rag-chat"
 import { redis } from "@/lib/redis";
 
@@ -42,10 +43,7 @@ const Page = async ({ params } : PageProps) => {
 
   // console.log(params)
 
-  return (
-    <div>Hello</div>
-    
-  )
+  return <ChatWrapper />
 }
 
 export default Page
