@@ -43,7 +43,7 @@ const Page = async ({ params } : PageProps) => {
 
   // console.log(params)
 
-  return <ChatWrapper />
+  return <ChatWrapper sessionId={sessionId} />
 }
 
 export default Page
