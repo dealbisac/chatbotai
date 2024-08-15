@@ -21,9 +21,23 @@ const Message = ({ content, isUserMessage}: MessagesProps) => {
                     "bg-blue-950 border-blue-700 text-zinc-200": isUserMessage,
                 }
                 )}>
-                    {isUserMessage ? <User className="size-5" /> : <Bot className="size-5 text-white" />}
-
+                    {
+                        isUserMessage 
+                        ? <User className="size-5" /> 
+                        : <Bot className="size-5 text-white" />}
                 </div>
+
+                <div className="flex">
+                    <div className="flex">
+                        <span className="text-sm">
+                            {isUserMessage ? "You" : "Website"}
+                        </span>
+                    </div>
+                </div>
+
+                <p className="text-sm">
+                    {content}
+                </p>
             </div>
         </div>
         
