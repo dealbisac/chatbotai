@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Raleway } from "next/font/google";
 import "./globals.css";
+import { cn } from "@/lib/utils";
 
 const raleway = Raleway({ subsets: ["latin"] });
 
@@ -16,7 +17,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={raleway.className}>{children}</body>
+      <body className={cn(raleway.className, "min-h-screen antialiased")}>
+        <main className="h-screen dark text-foreground bg-background">
+          {children}
+        </main>
+      </body>
     </html>
   );
 }
