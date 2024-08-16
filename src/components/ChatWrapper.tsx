@@ -2,6 +2,7 @@
 
 import { useChat } from "ai/react"
 import Messages from "./Messages"
+import ChatInput from "./ChatInput"
 
 const ChatWrapper = ({sessionId} : { sessionId: string }) => {
     // const [input, seInput] = useState("")
@@ -17,7 +18,7 @@ const ChatWrapper = ({sessionId} : { sessionId: string }) => {
             <Messages messages={messages} />
         </div>
 
-        <form onSubmit={handleSubmit}>
+        {/* <form onSubmit={handleSubmit}>
             <input 
                 value={input} 
                 onChange={handleInputChange} 
@@ -30,7 +31,9 @@ const ChatWrapper = ({sessionId} : { sessionId: string }) => {
             >
                 Send
             </button>
-        </form>
+        </form> */}
+
+        <ChatInput />
         
     </div>
   )
