@@ -1,6 +1,7 @@
 import ChatWrapper from "@/components/ChatWrapper";
 import { ragChat } from "@/lib/rag-chat"
 import { redis } from "@/lib/redis";
+import { cookies } from "next/headers";
 
 interface PageProps {
     params: {
@@ -19,16 +20,23 @@ function refineUrl({ url }: { url: string[] }) {
 }
 
 const Page = async ({ params } : PageProps) => {
-   // Refine the URL
-  const refinedUrl = refineUrl({ url: params.url as string[] })
+    // Session ID Cookie 
+    const sessionCookie = cookies().get("sessionId")?.value
+   
+    // Refine the URL
+    const refinedUrl = refineUrl({ url: params.url as string[] })
 
-  // Check if the provided URL is already indexed so that new vector db can be duplicated
-  const isAlreadyIndexed = await redis.sismember("indexed-urls", refinedUrl);
+    // Session ID
+    // const sessionId = "session-mock";
+    const sessionId = (refinedUrl + "--" + sessionCookie).replace(/\//g, "")
 
-  // Session ID
-    const sessionId = "session-mock";
+    // Check if the provided URL is already indexed so that new vector db can be duplicated
+    const isAlreadyIndexed = await redis.sismember("indexed-urls", refinedUrl);
+
   
-  if (!isAlreadyIndexed) {
+  
+    // If the URL is not already indexed, add it to the index
+    if (!isAlreadyIndexed) {
 
     // perform ragChat
     await ragChat.context.add({
