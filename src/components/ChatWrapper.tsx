@@ -39,7 +39,6 @@ const ChatWrapper = ({sessionId} : { sessionId: string }) => {
             handleSubmit={handleSubmit}
             setInput={setInput}
         />
-        
     </div>
   )
 }
