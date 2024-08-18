@@ -7,7 +7,7 @@ import ChatInput from "./ChatInput"
 const ChatWrapper = ({sessionId} : { sessionId: string }) => {
     // const [input, seInput] = useState("")
 
-    const { messages, handleInputChange, handleSubmit, input} = useChat({
+    const { messages, handleInputChange, handleSubmit, input, setInput} = useChat({
         api: "/api/chat-stream",
         body: {sessionId},
     })
@@ -33,7 +33,12 @@ const ChatWrapper = ({sessionId} : { sessionId: string }) => {
             </button>
         </form> */}
 
-        <ChatInput />
+        <ChatInput 
+            input={input}
+            handleInputChange={handleInputChange}
+            handleSubmit={handleSubmit}
+            setInput={setInput}
+        />
         
     </div>
   )
