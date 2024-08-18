@@ -33,7 +33,8 @@ const Page = async ({ params } : PageProps) => {
     // Check if the provided URL is already indexed so that new vector db can be duplicated
     const isAlreadyIndexed = await redis.sismember("indexed-urls", refinedUrl);
 
-  
+    // Load messages history of the user
+    const initialMessages = await ragChat.history.getMessages({amount: 10, sessionId})
   
     // If the URL is not already indexed, add it to the index
     if (!isAlreadyIndexed) {
@@ -51,7 +52,7 @@ const Page = async ({ params } : PageProps) => {
 
   // console.log(params)
 
-  return <ChatWrapper sessionId={sessionId} />
+  return <ChatWrapper sessionId={sessionId} initialMessages={initialMessages}/>
 }
 
 export default Page
